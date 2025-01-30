@@ -3,6 +3,8 @@ import "./globals.css";
 
 import localFont from "next/font/local";
 import { Toaster } from "@/components/ui/toaster";
+import { auth } from "@/auth";
+import { SessionProvider } from "next-auth/react";
 
 const ibmPlexSans = localFont({
   src: [
@@ -31,29 +33,35 @@ const ibmPlexSans = localFont({
 
 const bebasNeue = localFont({
   src: [
-    {path: '/fonts/BebasNeue-Regular.ttf', weight: '400', style: 'normal'},
+    { path: "/fonts/BebasNeue-Regular.ttf", weight: "400", style: "normal" },
   ],
   variable: "--bebas-neue",
-})
+});
 
 export const metadata: Metadata = {
   title: "Bookshelf",
   description: "A library management tool for the modern age.",
 };
 
-export default function RootLayout({
+const RootLayout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
+  const session = await auth();
+
   return (
     <html lang="en">
-      <body
-        className={`${ibmPlexSans.className} ${bebasNeue.variable} antialiased`}
-      >
-        {children}
-        <Toaster />
-      </body>
+      <SessionProvider session={session}>
+        <body
+          className={`${ibmPlexSans.className} ${bebasNeue.variable} antialiased`}
+        >
+          {children}
+          <Toaster />
+        </body>
+      </SessionProvider>
     </html>
   );
-}
+};
+
+export default RootLayout;

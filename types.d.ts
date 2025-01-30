@@ -9,7 +9,15 @@ interface Book {
   description: string;
   color: string;
   cover: string;
-  vide: string;
+  video: string;
   summary: string;
-  isLoanedBook?: boolean
+  isLoanedBook?: boolean;
+}
+
+interface AuthCredentials {
+  fullName: string;
+  email: string;
+  password: string;
+  universityId: number;
+  universityCard: string;
 }

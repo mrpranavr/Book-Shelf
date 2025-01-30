@@ -22,7 +22,7 @@ const authenticator = async () => {
       const errorText = await response.text();
 
       throw new Error(
-        `Request failed with status ${response.status}: ${errorText}`
+        `Request failed with status ${response.status}: ${errorText}`,
       );
     }
 
@@ -99,9 +99,7 @@ const ImageUpload = ({
 
         <p className="text-base text-light-100">Upload a File</p>
 
-        {file && (
-          <p className={cn("upload-filename")}>{file.filePath}</p>
-        )}
+        {file && <p className={cn("upload-filename")}>{file.filePath}</p>}
       </button>
       {file && (
         // <p className>{file.filePath}</p>
@@ -110,7 +108,8 @@ const ImageUpload = ({
           alt={file.filePath}
           lqip={{ active: true }}
           width={500}
-          height={500}
+          height={300}
+          // fill={true}
         />
       )}
     </ImageKitProvider>

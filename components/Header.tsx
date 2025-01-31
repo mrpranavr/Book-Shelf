@@ -31,13 +31,14 @@ const Header = ({ session }: { session: Session }) => {
         </li>
 
         <li>
-          <Link href="/my-profile"></Link>
-          <Avatar>
-            {/* <AvatarImage src="https://github.com/shadcn.png" /> */}
-            <AvatarFallback className="bg-amber-100">
-              {getInitials(session?.user?.name || "IN")}
-            </AvatarFallback>
-          </Avatar>
+          <Link href="/my-profile">
+            <Avatar>
+              {/* <AvatarImage src="https://github.com/shadcn.png" /> */}
+              <AvatarFallback className="bg-amber-100">
+                {getInitials(session?.user?.name || "IN")}
+              </AvatarFallback>
+            </Avatar>
+          </Link>
         </li>
       </ul>
     </header>
